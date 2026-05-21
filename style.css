@@ -1,0 +1,240 @@
+:root {
+    --primary: #0066ff;
+    --primary-dark: #004fbf;
+    --bg: #f5faff;
+    --text: #333;
+    --white: #fff;
+    --transition: 0.3s ease;
+    --font: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 1rem 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Navbar */
+.navbar {
+    background: var(--white);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+.nav-links a {
+    padding: 0.5rem;
+    transition: color var(--transition);
+}
+.nav-links a:hover {
+    color: var(--primary);
+}
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Hero */
+.hero {
+    background: linear-gradient(135deg, var(--primary), #00aaff);
+    color: var(--white);
+    padding: 6rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.2), transparent 60%);
+    animation: move 10s infinite linear;
+}
+@keyframes move {
+    from {transform: translate(-50%, -50%) rotate(0deg);}
+    to {transform: translate(-50%, -50%) rotate(360deg);}
+}
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: auto;
+}
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+.btn-primary {
+    background: var(--primary-dark);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background var(--transition);
+}
+.btn-primary:hover {
+    background: var(--primary);
+}
+
+/* Sections */
+section {
+    padding: 4rem 0;
+}
+section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: var(--primary);
+}
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+.card {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.card h3 {
+    margin-bottom: 0.5rem;
+    color: var(--primary-dark);
+}
+
+/* Testimonials */
+.testimonial {
+    background: var(--white);
+    padding: 1.5rem;
+    border-left: 4px solid var(--primary);
+    border-radius: 4px;
+    font-style: italic;
+}
+.testimonial h4 {
+    margin-top: 0.5rem;
+    text-align: right;
+    font-style: normal;
+    color: var(--primary-dark);
+}
+
+/* Contact */
+.contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 600px;
+    margin: auto;
+}
+.contact input, .contact textarea {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: var(--font);
+    width: 100%;
+}
+.contact button {
+    align-self: flex-start;
+}
+
+/* Footer */
+footer {
+    background: var(--primary);
+    color: var(--white);
+    padding: 1rem 0;
+}
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+.footer-content nav a {
+    margin: 0 0.5rem;
+    color: var(--white);
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        flex-direction: column;
+        display: none;
+        padding: 1rem 0;
+    }
+    .nav-links a {
+        padding: 0.75rem 1rem;
+    }
+    .nav-toggle {
+        display: block;
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Scroll animations */
+[data-fade] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+[data-fade].visible {
+    opacity: 1;
+    transform: none;
+}
